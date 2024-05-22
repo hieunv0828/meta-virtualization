@@ -1,4 +1,4 @@
-From 650c882d3c53db118b01dd5e15fa1bc0ddaa36f1 Mon Sep 17 00:00:00 2001
+From f4faa06afbbbe0f7b2e9ee33a0a9afa8f818e788 Mon Sep 17 00:00:00 2001
 From: Bruce Ashfield <bruce.ashfield@gmail.com>
 Date: Thu, 15 Apr 2021 11:28:05 -0400
 Subject: [PATCH] cli: use external GO111MODULE and cross compiler
@@ -7,14 +7,14 @@ Upstream-Status: Inappropriate [embedded specific]
 
 Signed-off-by: Bruce Ashfield <bruce.ashfield@gmail.com>
 ---
- git/cli/scripts/build/binary | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ scripts/build/binary | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-Index: git/cli/scripts/build/binary
-===================================================================
---- git.orig/cli/scripts/build/binary
-+++ git/cli/scripts/build/binary
-@@ -13,8 +13,6 @@
+diff --git a/scripts/build/binary b/scripts/build/binary
+index 44cd4f14fd..039bd5ecfd 100755
+--- a/scripts/build/binary
++++ b/scripts/build/binary
+@@ -13,8 +13,6 @@ fi
  
  echo "Building $GO_LINKMODE $(basename "${TARGET}")"
  
@@ -23,7 +23,7 @@ Index: git/cli/scripts/build/binary
  if [ "$(go env GOOS)" = "windows" ]; then
    if [ ! -x "$(command -v goversioninfo)" ]; then
      >&2 echo "goversioninfo not found, skipping manifesting binary"
-@@ -24,6 +22,6 @@
+@@ -24,6 +22,6 @@ if [ "$(go env GOOS)" = "windows" ]; then
    fi
  fi
  

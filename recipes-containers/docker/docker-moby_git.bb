@@ -49,12 +49,12 @@ SRCREV_libnetwork = "67e0588f1ddfaf2faf4c8cae8b7ea2876434d91c"
 SRCREV_cli = "01f933261885c0126edb3f47fd56d048ae31265a"
 SRCREV_FORMAT = "moby_libnetwork"
 SRC_URI = "\
-	git://github.com/moby/moby.git;branch=25.0;name=moby;protocol=https \
-	git://github.com/docker/libnetwork.git;branch=master;name=libnetwork;destsuffix=git/libnetwork;protocol=https \
-	git://github.com/docker/cli;branch=25.0;name=cli;destsuffix=git/cli;protocol=https \
+	git://github.com/moby/moby.git;branch=25.0;name=moby;protocol=https;destsuffix=${GO_SRCURI_DESTSUFFIX} \
+	git://github.com/docker/libnetwork.git;branch=master;name=libnetwork;destsuffix=${GO_SRCURI_DESTSUFFIX}/libnetwork;protocol=https \
+	git://github.com/docker/cli;branch=25.0;name=cli;destsuffix=${GO_SRCURI_DESTSUFFIX}/cli;protocol=https \
 	file://docker.init \
-	file://0001-libnetwork-use-GO-instead-of-go.patch \
-        file://0001-cli-use-external-GO111MODULE-and-cross-compiler.patch \
+	file://0001-libnetwork-use-GO-instead-of-go.patch;patchdir=src/import \
+        file://0001-cli-use-external-GO111MODULE-and-cross-compiler.patch;patchdir=src/import/cli \
         file://0001-dynbinary-use-go-cross-compiler.patch;patchdir=src/import \
 	"
 
