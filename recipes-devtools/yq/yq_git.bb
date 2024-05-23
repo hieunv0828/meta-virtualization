@@ -24,26 +24,26 @@ SRCREV_text = "434eadcdbc3b0256971992e8c70027278364c72c"
 SRCREV_diff = "20ebb0f2a09e612109b224b32f79370409108bcc"
 
 SRCREV_FORMAT = "yq_color"
-SRC_URI = "git://${GO_IMPORT};name=yq;branch=master;protocol=https \
-           git://github.com/fatih/color;name=color;destsuffix=build/vendor/src/github.com/fatih/color;branch=main;protocol=https \
-           git://github.com/goccy/go-yaml;name=lexer;destsuffix=build/vendor/src/github.com/goccy/go-yaml/;branch=master;protocol=https \
-	       git://github.com/spf13/cobra;name=cobra;nobranch=1;destsuffix=build/vendor/src/github.com/spf13/cobra;branch=main;protocol=https \
-	       git://github.com/spf13/pflag;name=pflag;destsuffix=build/vendor/src/github.com/spf13/pflag;branch=master;protocol=https \
-	       git://github.com/op/go-logging.git;name=logging;destsuffix=build/vendor/src/gopkg.in/op/go-logging.v1;branch=master;protocol=https \
-	       git://github.com/go-yaml/yaml.git;name=yaml;branch=v3;destsuffix=build/vendor/src/gopkg.in/yaml.v3;protocol=https \
-           git://github.com/golang/xerrors;name=xerrors;protocol=https;nobranch=1;destsuffix=build/vendor/src/golang.org/x/xerrors \
-           git://github.com/a8m/envsubst;name=envsubst;destsuffix=build/vendor/src/github.com/a8m/envsubst;branch=master;protocol=https \
-           git://github.com/alecthomas/participle;name=participle;destsuffix=build/vendor/src/github.com/alecthomas/participle;branch=master;protocol=https \
-           git://github.com/dimchansky/utfbom;name=utfbom;destsuffix=build/vendor/src/github.com/dimchansky/utfbom;branch=master;protocol=https \
-           git://github.com/elliotchance/orderedmap;name=orderedmap;destsuffix=build/vendor/src/github.com/elliotchance/orderedmap;branch=master;protocol=https \
-           git://github.com/goccy/go-json;name=go-json;destsuffix=build/vendor/src/github.com/goccy/go-json;branch=master;protocol=https \
-           git://github.com/jinzhu/copier;name=copier;destsuffix=build/vendor/src/github.com/jinzhu/copier;branch=master;protocol=https \
-           git://github.com/magiconair/properties;name=properties;destsuffix=build/vendor/src/github.com/magiconair/properties;branch=main;protocol=https \
-           git://github.com/golang/net;name=net;destsuffix=build/vendor/src/golang.org/x/net;branch=master;protocol=https \
-           git://github.com/golang/text;name=text;destsuffix=build/vendor/src/golang.org/x/text;branch=master;protocol=https \
-           git://github.com/pkg/diff;name=diff;destsuffix=build/vendor/src/github.com/pkg/diff;branch=main;protocol=https \
-           file://run-ptest \
-           "
+SRC_URI = "git://${GO_IMPORT};name=yq;branch=master;protocol=https;destsuffix=${GO_SRCURI_DESTSUFFIX} \
+    git://github.com/fatih/color;name=color;destsuffix=${GO_SRCURI_DESTSUFFIX}/github.com/fatih/color;branch=main;protocol=https \
+    git://github.com/goccy/go-yaml;name=lexer;destsuffix=${GO_SRCURI_DESTSUFFIX}/github.com/goccy/go-yaml/;branch=master;protocol=https \
+    git://github.com/spf13/cobra;name=cobra;nobranch=1;destsuffix=${GO_SRCURI_DESTSUFFIX}/github.com/spf13/cobra;branch=main;protocol=https \
+    git://github.com/spf13/pflag;name=pflag;destsuffix=${GO_SRCURI_DESTSUFFIX}/github.com/spf13/pflag;branch=master;protocol=https \
+    git://github.com/op/go-logging.git;name=logging;destsuffix=${GO_SRCURI_DESTSUFFIX}/gopkg.in/op/go-logging.v1;branch=master;protocol=https \
+    git://github.com/go-yaml/yaml.git;name=yaml;branch=v3;destsuffix=${GO_SRCURI_DESTSUFFIX}/gopkg.in/yaml.v3;protocol=https \
+    git://github.com/golang/xerrors;name=xerrors;protocol=https;nobranch=1;destsuffix=${GO_SRCURI_DESTSUFFIX}/golang.org/x/xerrors \
+    git://github.com/a8m/envsubst;name=envsubst;destsuffix=${GO_SRCURI_DESTSUFFIX}/github.com/a8m/envsubst;branch=master;protocol=https \
+    git://github.com/alecthomas/participle;name=participle;destsuffix=${GO_SRCURI_DESTSUFFIX}/github.com/alecthomas/participle;branch=master;protocol=https \
+    git://github.com/dimchansky/utfbom;name=utfbom;destsuffix=${GO_SRCURI_DESTSUFFIX}/github.com/dimchansky/utfbom;branch=master;protocol=https \
+    git://github.com/elliotchance/orderedmap;name=orderedmap;destsuffix=${GO_SRCURI_DESTSUFFIX}/github.com/elliotchance/orderedmap;branch=master;protocol=https \
+    git://github.com/goccy/go-json;name=go-json;destsuffix=${GO_SRCURI_DESTSUFFIX}/github.com/goccy/go-json;branch=master;protocol=https \
+    git://github.com/jinzhu/copier;name=copier;destsuffix=${GO_SRCURI_DESTSUFFIX}/github.com/jinzhu/copier;branch=master;protocol=https \
+    git://github.com/magiconair/properties;name=properties;destsuffix=${GO_SRCURI_DESTSUFFIX}/github.com/magiconair/properties;branch=main;protocol=https \
+    git://github.com/golang/net;name=net;destsuffix=${GO_SRCURI_DESTSUFFIX}/golang.org/x/net;branch=master;protocol=https \
+    git://github.com/golang/text;name=text;destsuffix=${GO_SRCURI_DESTSUFFIX}/golang.org/x/text;branch=master;protocol=https \
+    git://github.com/pkg/diff;name=diff;destsuffix=${GO_SRCURI_DESTSUFFIX}/github.com/pkg/diff;branch=main;protocol=https \
+    file://run-ptest \
+"
 
 PV = "4.30.8+git${SRCREV_yq}"
 GO_IMPORT = "github.com/mikefarah/yq"
@@ -53,12 +53,12 @@ inherit go ptest
 do_compile:prepend() {
     # arrange for some of the golang built ins to be found
     (
-	cd ${WORKDIR}/build/src/
-	ln -sf ${STAGING_DIR_TARGET}/${prefix}/lib/go/src/cmd/vendor/golang.org .
+        cd ${WORKDIR}${GO_SRCURI_DESTSUFFIX}
+        ln -sf ${STAGING_DIR_TARGET}/${prefix}/lib/go/src/cmd/vendor/golang.org .
     )
 
     # arrange for the fetched dependencies to be found
-    export GOPATH="${GOPATH}:${WORKDIR}/build/vendor/"
+    export GOPATH="${GOPATH}:${WORKDIR}${GO_SRCURI_DESTSUFFIX}"
     export GO111MODULE=off
 }
 
