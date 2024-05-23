@@ -18,12 +18,12 @@ What is not in scope for this project? \
 
 SRCREV_cri-tools = "17b4dd65d660fec94d7a5a070e3e89ef640f1087"
 SRC_URI = "\
-	git://github.com/kubernetes-sigs/cri-tools.git;branch=master;name=cri-tools;protocol=https \
-        file://0001-build-allow-environmental-CGO-settings-and-pass-dont.patch \
-	"
+    git://github.com/kubernetes-sigs/cri-tools.git;branch=master;name=cri-tools;protocol=https;destsuffix=${GO_SRCURI_DESTSUFFIX} \
+    file://0001-build-allow-environmental-CGO-settings-and-pass-dont.patch;patchdir=src/${GO_IMPORT}/ \
+"
 
 LICENSE = "Apache-2.0"
-LIC_FILES_CHKSUM = "file://src/import/LICENSE;md5=e3fc50a88d0a364313df4b21ef20c29e"
+LIC_FILES_CHKSUM = "file://src/${GO_IMPORT}/LICENSE;md5=e3fc50a88d0a364313df4b21ef20c29e"
 
 GO_IMPORT = "import"
 

@@ -35,10 +35,10 @@ Signed-off-by: Bruce Ashfield <bruce.ashfield@gmail.com>
  src/import/Makefile | 3 ++-
  1 file changed, 2 insertions(+), 1 deletion(-)
 
-Index: cri-tools-1.27.0+gite73a7139ed4986d6a0db784ae7a036841a02b351/src/import/Makefile
+Index: Makefile
 ===================================================================
---- cri-tools-1.27.0+gite73a7139ed4986d6a0db784ae7a036841a02b351.orig/src/import/Makefile
-+++ cri-tools-1.27.0+gite73a7139ed4986d6a0db784ae7a036841a02b351/src/import/Makefile
+--- a/Makefile
++++ b/Makefile
 @@ -74,7 +74,8 @@
  	@$(MAKE) -B $(CRICTL)
  
