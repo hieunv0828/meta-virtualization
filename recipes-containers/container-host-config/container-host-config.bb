@@ -14,9 +14,9 @@ SRC_URI = " \
 do_install() {
 	install -d ${D}/${sysconfdir}/containers
 
-	install ${WORKDIR}/storage.conf ${D}/${sysconfdir}/containers/storage.conf
-	install ${WORKDIR}/registries.conf ${D}/${sysconfdir}/containers/registries.conf
-	install ${WORKDIR}/policy.json ${D}/${sysconfdir}/containers/policy.json
+	install ${UNPACKDIR}/storage.conf ${D}/${sysconfdir}/containers/storage.conf
+	install ${UNPACKDIR}/registries.conf ${D}/${sysconfdir}/containers/registries.conf
+	install ${UNPACKDIR}/policy.json ${D}/${sysconfdir}/containers/policy.json
 }
 
 BBCLASSEXTEND = "native nativesdk"
