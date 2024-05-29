@@ -46,7 +46,7 @@ do_compile:append() {
 		# the syroot staged pkgconfig entries. So we clear the sysroot
 		# for just this portion.
 		export PKG_CONFIG_SYSROOT_DIR=
-		cd ${WORKDIR}/${BPN}-python-${PV} && \
+		cd ${UNPACKDIR}/${BPN}-python-${PV} && \
 		  ${STAGING_BINDIR_NATIVE}/python3-native/python3 setup.py build
 	fi
 }
@@ -57,7 +57,7 @@ do_install:append() {
 		# the syroot staged pkgconfig entries. So we clear the sysroot
 		# for just this portion.
 		export PKG_CONFIG_SYSROOT_DIR=
-		cd ${WORKDIR}/${BPN}-python-${PV} && \
+		cd ${UNPACKDIR}/${BPN}-python-${PV} && \
 		  ${STAGING_BINDIR_NATIVE}/python3-native/python3 setup.py install \
                        --install-lib=${D}/${PYTHON_SITEPACKAGES_DIR} ${LIBVIRT_INSTALL_ARGS}
 	fi

@@ -195,8 +195,8 @@ do_install:append() {
 	install -d ${D}/etc/libvirt
 	install -d ${D}/etc/dnsmasq.d
 
-	install -m 0755 ${WORKDIR}/libvirtd.sh ${D}/etc/init.d/libvirtd
-	install -m 0644 ${WORKDIR}/libvirtd.conf ${D}/etc/libvirt/libvirtd.conf
+	install -m 0755 ${UNPACKDIR}/libvirtd.sh ${D}/etc/init.d/libvirtd
+	install -m 0644 ${UNPACKDIR}/libvirtd.conf ${D}/etc/libvirt/libvirtd.conf
 
 	if ${@bb.utils.contains('DISTRO_FEATURES','sysvinit','true','false',d)}; then
 	    # This will wind up in the libvirtd package, but will NOT be invoked by default.
@@ -255,12 +255,12 @@ do_install:append() {
 	mkdir -p ${D}/etc/libvirt/hooks
 	for hook in "daemon" "lxc" "network" "qemu"
 	do
-		install -m 0755 ${WORKDIR}/hook_support.py ${D}/etc/libvirt/hooks/${hook}
+		install -m 0755 ${UNPACKDIR}/hook_support.py ${D}/etc/libvirt/hooks/${hook}
 	done
 
 	# Force the main dnsmasq instance to bind only to specified interfaces and
 	# to not bind to virbr0. Libvirt will run its own instance on this interface.
-	install -m 644 ${WORKDIR}/dnsmasq.conf ${D}/${sysconfdir}/dnsmasq.d/libvirt-daemon
+	install -m 644 ${UNPACKDIR}/dnsmasq.conf ${D}/${sysconfdir}/dnsmasq.d/libvirt-daemon
 
 	# remove .la references to our working diretory
 	for i in `find ${D}${libdir} -type f -name *.la`; do
@@ -286,21 +286,21 @@ do_install:append() {
 
 	if ${@bb.utils.contains('PACKAGECONFIG','gnutls','true','false',d)}; then
 	    # Generate sample keys and certificates.
-	    cd ${WORKDIR}
-	    ${WORKDIR}/gnutls-helper.py -y
+	    cd ${UNPACKDIR}
+	    ${UNPACKDIR}/gnutls-helper.py -y
 
 	    # Deploy all sample keys and certificates of CA, server and client
 	    # to target so that libvirtd is able to boot successfully and local
 	    # connection via 127.0.0.1 is available out of box.
 	    install -d ${D}/etc/pki/CA
 	    install -d ${D}/etc/pki/libvirt/private
-            install -m 0755 ${WORKDIR}/gnutls-helper.py ${D}/${bindir}
-	    install -m 0644 ${WORKDIR}/cakey.pem ${D}/${sysconfdir}/pki/libvirt/private/cakey.pem
-	    install -m 0644 ${WORKDIR}/cacert.pem ${D}/${sysconfdir}/pki/CA/cacert.pem
-	    install -m 0644 ${WORKDIR}/serverkey.pem ${D}/${sysconfdir}/pki/libvirt/private/serverkey.pem
-	    install -m 0644 ${WORKDIR}/servercert.pem ${D}/${sysconfdir}/pki/libvirt/servercert.pem
-	    install -m 0644 ${WORKDIR}/clientkey.pem ${D}/${sysconfdir}/pki/libvirt/private/clientkey.pem
-	    install -m 0644 ${WORKDIR}/clientcert.pem ${D}/${sysconfdir}/pki/libvirt/clientcert.pem
+            install -m 0755 ${UNPACKDIR}/gnutls-helper.py ${D}/${bindir}
+	    install -m 0644 ${UNPACKDIR}/cakey.pem ${D}/${sysconfdir}/pki/libvirt/private/cakey.pem
+	    install -m 0644 ${UNPACKDIR}/cacert.pem ${D}/${sysconfdir}/pki/CA/cacert.pem
+	    install -m 0644 ${UNPACKDIR}/serverkey.pem ${D}/${sysconfdir}/pki/libvirt/private/serverkey.pem
+	    install -m 0644 ${UNPACKDIR}/servercert.pem ${D}/${sysconfdir}/pki/libvirt/servercert.pem
+	    install -m 0644 ${UNPACKDIR}/clientkey.pem ${D}/${sysconfdir}/pki/libvirt/private/clientkey.pem
+	    install -m 0644 ${UNPACKDIR}/clientcert.pem ${D}/${sysconfdir}/pki/libvirt/clientcert.pem
 
 	    # Force the connection to be tls.
 	    sed -i -e 's/^\(listen_tls\ =\ .*\)/#\1/' -e 's/^\(listen_tcp\ =\ .*\)/#\1/' ${D}/etc/libvirt/libvirtd.conf
