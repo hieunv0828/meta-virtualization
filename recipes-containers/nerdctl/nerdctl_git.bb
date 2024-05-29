@@ -13,21 +13,22 @@ DEPENDS = " \
 SRCREV_FORMAT="nerdcli_cgroups"
 SRCREV_nerdcli = "265d6b9cf526ce7d9ed8d34a0e3c3066901cc463"
 
-SRC_URI = "git://github.com/containerd/nerdctl.git;name=nerdcli;branch=main;protocol=https;destsuffix=${GO_SRCURI_DESTSUFFIX}"
+SRC_URI = "git://github.com/containerd/nerdctl.git;name=nerdcli;branch=main;protocol=https;destsuffix=${UNPACKDIR}"
 
 include src_uri.inc
 
 # patches and config
-SRC_URI += "file://0001-Makefile-allow-external-specification-of-build-setti.patch;patchdir=src/${GO_IMPORT} \
+SRC_URI += "file://0001-Makefile-allow-external-specification-of-build-setti.patch;patchdir=${UNPACKDIR} \
             file://modules.txt \
            "
 
 LICENSE = "Apache-2.0"
-LIC_FILES_CHKSUM = "file://src/import/LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
+LIC_FILES_CHKSUM = "file://${UNPACKDIR}/LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
 
 GO_IMPORT = "import"
 
 # S = "${WORKDIR}/git"
+UNPACKDIR = "${WORKDIR}/${BP}/src/${GO_IMPORT}"
 
 PV = "v2.0.0-beta.1"
 
@@ -53,7 +54,7 @@ PIEFLAG = "${@bb.utils.contains('GOBUILDFLAGS', '-buildmode=pie', '-buildmode=pi
 
 do_compile() {
 
-    	cd ${S}/src/import
+	cd ${UNPACKDIR}
 
 	export GOPATH="$GOPATH:${S}/src/import/.gopath"
 
@@ -69,14 +70,14 @@ do_compile() {
 	# our copied .go files are to be used for the build
 	ln -sf vendor.copy vendor
 	# inform go that we know what we are doing
-	cp ${WORKDIR}/modules.txt vendor/
+	cp ${UNPACKDIR}/modules.txt vendor/
 
 	oe_runmake GO=${GO} BUILDTAGS="${BUILDTAGS}" binaries
 }
 
 do_install() {
         install -d "${D}${BIN_PREFIX}${base_bindir}"
-        install -m 755 "${S}/src/import/_output/nerdctl" "${D}${BIN_PREFIX}${base_bindir}"
+        install -m 755 "${UNPACKDIR}/_output/nerdctl" "${D}${BIN_PREFIX}${base_bindir}"
 }
 
 INHIBIT_PACKAGE_STRIP = "1"

@@ -135,7 +135,7 @@ export sites="gotest.tools/v3:gotest.tools/v3:force \
            go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp:go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp/instrumentation/net/http/otelhttp:force"
 
 do_compile:prepend() {
-    cd ${S}/src/import
+    cd ${UNPACKDIR}
     for s in $sites; do
         site_dest=$(echo $s | cut -d: -f1)
         site_source=$(echo $s | cut -d: -f2)
